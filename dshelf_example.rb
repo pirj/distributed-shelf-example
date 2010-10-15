@@ -26,12 +26,11 @@ class DistributedShelfExample < Sinatra::Base
   end
 
   post '/upload' do
-    unless params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
-      redirect '/'
+    if params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
+      path = File.join('upload', name)
+      File.open(path, "wb") { |f| f.write(tmpfile.read) }
     end
-    directory = "upload"
-    path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(tmpfile.read) }
+    redirect '/'
   end
 
 end
