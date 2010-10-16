@@ -17,10 +17,6 @@ class DistributedShelfExample < Sinatra::Base
 %form(action="/upload" method="post" enctype="multipart/form-data")
   %input(type="file" name="file")
   %input(type="submit" value="Upload")
-  %span
-    env is:
-    =ENV['DISTRIBUTED_SHELF_URL']
-    =ENV
     hml
   end
 
