@@ -15,7 +15,6 @@ class DistributedShelfExample < Sinatra::Base
   use Rack::Lint
   set :static, true
   set :public, "#{Dir.pwd}/public"
-  set :haml, {:encoding => 'utf-8'}
 
   get '/' do
     haml <<-hml
