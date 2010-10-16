@@ -12,10 +12,6 @@ class DistributedShelfExample < Sinatra::Base
     }
   end
 
-  use Rack::Lint
-  set :static, true
-  set :public, "#{Dir.pwd}/public"
-
   get '/' do
     haml <<-hml
 %form(action="/upload" method="post" enctype="multipart/form-data")
