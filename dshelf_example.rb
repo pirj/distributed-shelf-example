@@ -14,19 +14,19 @@ class DistributedShelfExample < Sinatra::Base
   end
 
   get '/' do
-    hml = <<-hml
+    hml = <<-'hml'
 %form(action="/upload" method="post" enctype="multipart/form-data")
   %input(type="file" name="file")
   %input(type="submit" value="Upload")
 - files.each do |file|
   %p
-    %a(href=file)=file
+    %a(href="download/#{file}")=file
     hml
     files = Dir.entries('upload')
     haml hml, :locals => {:files => files}
   end
 
-  get '/:file' do
+  get '/download/:file' do
     filename = params[:file]
     attachment filename
     content_type MIME::Types.type_for(filename)
