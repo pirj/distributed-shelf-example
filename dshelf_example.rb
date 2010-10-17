@@ -22,7 +22,7 @@ class DistributedShelfExample < Sinatra::Base
   %p
     %a(href="download/#{file}")=file
     hml
-    files = Dir.entries('upload')
+    files = begin Dir.entries('upload') rescue [] end
     haml hml, :locals => {:files => files}
   end
 
