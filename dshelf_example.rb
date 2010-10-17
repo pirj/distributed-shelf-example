@@ -5,9 +5,7 @@ require 'mime/types'
 
 class DistributedShelfExample < Sinatra::Base
 
-  configure do #:production 
-ENV['DISTRIBUTED_SHELF_URL'] = 'http://localhost:8000/storage/3470e95cc331a9f9eea163f5f41e9483'
-
+  configure :production do
     require 'dshelf'
     DistributedShelf::config = {
       :distributed_path => 'upload',
