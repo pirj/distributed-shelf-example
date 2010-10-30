@@ -11,9 +11,11 @@ class DistributedShelfExample < Sinatra::Base
       :distributed_path => '/upload',
       :storage_url => ENV['DISTRIBUTED_SHELF_URL']
     }
+    Dir.mkdir '/upload'
   end
 
   get '/' do
+    files = begin Dir.entries('/upload') rescue [] end
     hml = <<-'hml'
 %form(action="/upload" method="post" enctype="multipart/form-data")
   %input(type="file" name="file")
@@ -22,7 +24,6 @@ class DistributedShelfExample < Sinatra::Base
   %p
     %a(href="download/#{file}")=file
     hml
-    files = begin Dir.entries('/upload') rescue [] end
     haml hml, :locals => {:files => files}
   end
 
