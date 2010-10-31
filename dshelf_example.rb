@@ -31,13 +31,13 @@ class DistributedShelfExample < Sinatra::Base
     filename = params[:file]
     attachment filename
     content_type MIME::Types.type_for(filename)
-    path = File.join('/upload', name)
+    path = File.join('/upload', filename)
     File.open(path).read
   end
 
   post '/upload' do
-    if params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
-      path = File.join('/upload', name)
+    if params[:file] && (tmpfile = params[:file][:tempfile]) && (filename = params[:file][:filename])
+      path = File.join('/upload', filename)
       File.open(path, "wb") { |f| f.write(tmpfile.read) }
     end
     redirect '/'
