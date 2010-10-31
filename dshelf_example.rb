@@ -11,7 +11,7 @@ class DistributedShelfExample < Sinatra::Base
       :distributed_path => '/upload',
       :storage_url => ENV['DISTRIBUTED_SHELF_URL']
     }
-    Dir.mkdir '/upload'
+    Dir.mkdir '/upload' unless File.exists?('/upload')
   end
 
   get '/' do
