@@ -1,4 +1,4 @@
 sinatra
 haml -v 3.0.18
 mime-types
-dshelf -v 0.2.4
+dshelf
